@@ -1,0 +1,63 @@
+<style>
+#map_canvas {
+  width: 100%;
+  height: 100%;
+}
+</style>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ionic QR Code
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+  <div *ngIf="!connected">
+    <!-- À afficher si l'utilisateur n'est pas connecté -->
+    <ion-item>
+      <ion-label><b>Email:</b></ion-label>
+      <ion-input type="email" [(ngModel)]="dataUser.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><b>Mot de passe:</b></ion-label>
+      <ion-input type="password" [(ngModel)]="dataUser.password"></ion-input>
+    </ion-item>
+    <ion-button expand="block" color="primary" (click)="login()">Connexion</ion-button>
+  </div>
+  
+  <div *ngIf="connected">
+    <!-- Si l'utilisateur est connecté -->
+    <ion-button expand="block" color="danger" (click)="logout()">Déconnexion</ion-button>
+    <ion-button expand="block" color="tertiary" (click)="signUp()">Inscription</ion-button> 
+  </div>
+  
+  <ion-item lines="none">
+    <ion-label><b>Texte à encoder:</b></ion-label>
+    <ion-input [(ngModel)]="textToCode" placeholder="Entrez votre URL"></ion-input>
+  </ion-item>
+  <ion-button color="tertiary" expand="block" (click)="createQRCode()" *ngIf="!showCamera">
+    <ion-icon slot="start" name="create"></ion-icon>
+    Créer un QR Code
+  </ion-button>
+    <div class="center" *ngIf="myAngularxQrCode">
+      <qrcode [qrdata]="myAngularxQrCode" [size]="250" [level]="'M'"></qrcode>
+    </div>
+  
+    <div id="map_canvas"></div>
+    <!--<div *ngIf="!showCamera">
+      <ion-item *ngIf="textScanned" lines="none">
+        <ion-label>
+          <p>Texte du QR Code</p>
+          <h2><b>{{ textScanned }}</b></h2>
+        </ion-label>
+      </ion-item>
+      <ion-button expand="block" (click)="scanCode()" >
+        <ion-icon slot="start" name="qr-scanner"></ion-icon>
+        Scanner un QR Code
+      </ion-button>
+    </div>-->
+
+  
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "projetbell-ionic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
